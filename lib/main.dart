@@ -1,89 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:lifecycle/example_stateful.dart';
+import 'package:lifecycle/pages/further_more_page.dart';
 
-import 'example_stateless.dart';
+import 'pages/comparison_page.dart';
 
 void main() => runApp(MaterialApp(
-      home: MyApp(),
+      home: MainScreen(),
     ));
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
+class MainScreen extends StatelessWidget {
+  const MainScreen({
+    super.key,
+  });
 
-class _MyAppState extends State<MyApp> {
-  TextStyle textStyle = TextStyle(fontSize: 20);
-  bool existStateless = false;
-  bool existStateful = false;
-  bool isBlueStateless = false;
-  bool isBlueStateful = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: Center(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
-                child: Column(
-              children: [
-                Text(
-                  'Stateless Widget',
-                  style: textStyle,
-                ),
-                Expanded(
-                    child: existStateless
-                        ? ExampleStateless(isBlueStateless ? Colors.blue : Colors.red)
-                        : SizedBox.shrink()),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        existStateless = !existStateless;
-                      });
-                    },
-                    child: Text(existStateless ? '없애기' : '만들기')),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        isBlueStateless = !isBlueStateless;
-                      });
-                    },
-                    child: Text('색 변경'))
-              ],
-            )),
-            Divider(
-              thickness: 4,
-              height: 20,
+            buildRouteButton(
+              context: context,
+              buttonText: 'Stateful stateless 비교',
+              nextRoute: ComparisonPage(),
             ),
-            Expanded(
-                child: Column(
-              children: [
-                Text(
-                  'Stateful Widget',
-                  style: textStyle,
-                ),
-                Expanded(
-                    child:
-                        existStateful ? ExampleStateful(isBlueStateful ? Colors.blue : Colors.red) : SizedBox.shrink()),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        existStateful = !existStateful;
-                      });
-                    },
-                    child: Text(existStateful ? '없애기' : '만들기')),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        isBlueStateful = !isBlueStateful;
-                      });
-                    },
-                    child: Text('색 변경'))
-              ],
-            ))
+            buildRouteButton(
+              context: context,
+              buttonText: 'further more',
+              nextRoute: FurtherMorePage(),
+            )
           ],
         ),
       ),
     );
+  }
+
+  TextButton buildRouteButton({required BuildContext context, required String buttonText, required Widget nextRoute}) {
+    return TextButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => nextRoute),
+          );
+        },
+        child: Text(buttonText));
   }
 }
