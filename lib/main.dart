@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lifecycle/pages/further_more_page.dart';
+import 'package:lifecycle/pages/deactive_page.dart';
+import 'package:lifecycle/pages/inherited_widget.dart';
 
 import 'pages/comparison_page.dart';
 
@@ -27,8 +28,13 @@ class MainScreen extends StatelessWidget {
             ),
             buildRouteButton(
               context: context,
-              buttonText: 'further more',
-              nextRoute: FurtherMorePage(),
+              buttonText: 'Deactive',
+              nextRoute: DeactivePage(),
+            ),
+            buildRouteButton(
+              context: context,
+              buttonText: 'InheritedWidgetPage',
+              nextRoute: InheritedWidgetPage(),
             )
           ],
         ),

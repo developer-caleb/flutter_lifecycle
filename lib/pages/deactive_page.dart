@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../component/example_stateful.dart';
 
-class FurtherMorePage extends StatefulWidget {
-  const FurtherMorePage({Key? key}) : super(key: key);
+class DeactivePage extends StatefulWidget {
+  const DeactivePage({Key? key}) : super(key: key);
 
   @override
-  State<FurtherMorePage> createState() => _FurtherMorePageState();
+  State<DeactivePage> createState() => _DeactivePageState();
 }
 
-class _FurtherMorePageState extends State<FurtherMorePage> {
+class _DeactivePageState extends State<DeactivePage> {
   List<Widget> widgetList = [
     Container(
       width: 100,
